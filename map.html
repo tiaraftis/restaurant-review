@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- add your own favicon - https://favicon.io/ -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- reset default browser stylesheet -->
+    <link rel="stylesheet" href="css/modern-normalize.css">
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- add google font and other resources here -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- custom styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <title>MAP</title>
+</head>
+
+<body>
+    <header>
+        <nav id="mySidenav" class="sidenav">
+            <ul>
+                <li><a class="closebtn">&times;</a></li>
+                <li><a href="index.html">HOME</a> </li>
+                <li><a href="breakfast.html">BREAKFAST</a></li>
+                <li><a href="lunch.html">LUNCH</a> </li>
+                <li><a href="dinner.html">DINNER</a> </li>
+            </ul>
+        </nav>
+        <div class="openbtn">
+            <span class="material-symbols-outlined menu-button">menu</span>
+            <span class="menu-text">menu</span>
+        </div>
+        <div class="all-over-bkg"></div>
+        <h1 class="about-me-header">MAP</h1>
+        <a href="index.html">
+            <img class="logo" src="images/logo.png" alt="logo">
+        </a>
+    </header>
+        <h1 class="map-text">Map</h1>
+
+        <div id="map"> </div>
+
+        <!-- JS for LEAFLET -->
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+        <script>
+            // Center the map
+            var map = L.map('map').setView([39.167305821670766, -86.52842610678753], 13);
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            // Helper function for hover popups
+            function addHoverMarker(coords, text) {
+                const marker = L.marker(coords).addTo(map);
+
+                marker.bindPopup(text);
+
+                marker.on("mouseover", function () {
+                    this.openPopup();
+                });
+
+                marker.on("mouseout", function () {
+                    this.closePopup();
+                });
+            }
+            
+            // Your markers
+            // BREAKFAST RESTAURANTS
+            addHoverMarker([39.167098824959126, -86.52845540238168], "Bloomington Bagel Company");
+            addHoverMarker([39.166846180219366, -86.53509942240524], "Inkwell");
+            addHoverMarker([39.185921824641426, -86.53418856780085], "Lincoln Square Pancake House");
+            addHoverMarker([39.166724556835106, -86.52934483993072], "Village Deli");
+            addHoverMarker([39.164937543681965, -86.52838433641683], "Gables Bagels");
+            // LUNCH RESTAURANTS
+            addHoverMarker([39.166220530549545, -86.53311570892608], "Farm Bloomington");
+            addHoverMarker([39.1668122167896, -86.52873805785204], "Nicks English Hut");
+            addHoverMarker([39.173444289126756, -86.53740292878], "Upland Brewing Co.");
+            addHoverMarker([39.164941145326566, -86.52966374152004], "Bru Burger Bar");
+            addHoverMarker([39.165921940966115, -86.52710529602662], "BuffaLouie's at The Gables");
+
+            // DINNER RESTAURANTS
+            addHoverMarker([39.16538426065246, -86.52841791156709], "Siam House");
+            addHoverMarker([39.166864950915794, -86.53342159856489], "Malibu Grill");
+            addHoverMarker([39.16729207495523, -86.53594952245422], "Janko's Little Zagreb");
+            addHoverMarker([39.16477105976575, -86.53264559381927], "Da Vinci Pizza and Pasta");
+            addHoverMarker([39.16412118952082, -86.51509196055011], "Ami");
+
+        </script>
+        <h2>Address List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th class="restaurant-title">Breakfast Restaurant Name</th>
+                    <th class="restaurant-address">Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="Restaurant-name">Bloomington Bagels</td>
+                    <td class="Restaurant-addy">113 N Dunn St, Bloomington, IN 47408</td>
+                </tr>
+                <tr>
+                    <td class="Restaurant-name">Inkwell</td>
+                    <td class="Restaurant-addy">105 N College Ave, Bloomington, IN 47404</td>
+                </tr>
+                <tr>
+                    <td class="Restaurant-name">Lincoln Square Pancake House</td>
+                    <td class="Restaurant-addy">2160 N Walnut St, Bloomington, IN 47404</td>
+                </tr>
+                <tr>
+                    <td class="Restaurant-name">Village Deli</td>
+                    <td class="Restaurant-addy">409 E Kirkwood Ave, Bloomington, IN 47408</td>
+                </tr>
+                <tr>
+                    <td class="Restaurant-name">Gables Bagels</td>
+                    <td class="Restaurant-addy">421 E 3rd St #10, Bloomington, IN 47401</td>
+
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th class="restaurant-title">Lunch Restaurant Name</th>
+                    <th class="restaurant-address">Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="Restaurant-name">Nick's English Hut</td>
+                    <td class="Restaurant-addy">423 E Kirkwood Ave, Bloomington, IN 47408</td>
+                </tr>
+                <tr>
+                    <td class="Restaurant-name">Upland Brewing Co.</td>
+                    <td class="Restaurant-addy">350 W 11th St, Bloomington, IN 47404</td>
+                </tr>
+                <tr>
+                    <td class="Restaurant-name">Bru Burger Bar</td>
+                    <td class="Restaurant-addy">228 S Grant St Suite 1, Bloomington, IN 47404</td>
+                </tr>
+                <tr>
+                    <td class="Restaurant-name">BuffaLouie's at The Gables</td>
+                    <td class="Restaurant-addy">114 S Indiana Ave, Bloomington, IN 47408</td>
+                </tr>
+                <tr>
+                    <td class="Restaurant-name">Farm Bloomington</td>
+                    <td class="Restaurant-addy">108 E Kirkwood Ave, Bloomington, IN 47408</td>
+                </tr>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th class="restaurant-title">Dinner Restaurant Name</th>
+                    <th class="restaurant-address">Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="Restaurant-name">Siam House</td>
+                    <td class="Restaurant-addy">430 E 4rd St, Bloomington, IN 47408</td>
+                </tr>
+                <tr>
+                    <td class="Restaurant-name">Malibu Grill</td>
+                    <td class="Restaurant-addy">106 N Walnut St, Bloomington, IN 47404</td>
+                </tr>
+                <tr>
+                    <td class="Restaurant-name">Janko's Little Zagreb</td>
+                    <td class="Restaurant-addy">223 W 6th St, Bloomington, IN 47404</td>
+                </tr>
+                <tr>
+                    <td class="Restaurant-name">Da Vinci Pizza and Pasta</td>
+                    <td class="Restaurant-addy">250 S Washington St, Bloomington, IN 47408</td>
+                </tr>
+                <tr>
+                    <td class="Restaurant-name">Restaurant Ami</td>
+                    <td class="Restaurant-addy">1500 E 3th St, Bloomington, IN 47401</td>
+                </tr>
+            </tbody>
+        </table>
+    
+
+        <footer>
+            <p>© 2025 Tia Raftis</p>
+        </footer>
+
+    <script src="js/nav.js"></script>
+
+</body>
+
+</html>
